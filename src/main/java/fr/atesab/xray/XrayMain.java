@@ -466,7 +466,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
                     a = c.alpha() / 255F;
                 }
 
-                Box aabb = type.createSimpleBoundingBox(x, y, z);
+                Box aabb = e.getBoundingBox();
 
                 WorldRenderer.drawBox(stack, buffer, aabb, r, g, b, a);
 

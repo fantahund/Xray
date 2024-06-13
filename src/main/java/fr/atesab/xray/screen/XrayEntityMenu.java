@@ -293,4 +293,9 @@ public class XrayEntityMenu extends Screen {
         }
         return false;
     }
+
+    @Override
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
+        //NOTHING :>
+    }
 }
