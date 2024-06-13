@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import fr.atesab.xray.utils.TagOnWriteList;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
@@ -57,7 +56,7 @@ public class SyncedRegistryList<R> extends TagOnWriteList<String> implements Clo
 
     public SyncedRegistryList<R> sync() {
         objects.clear();
-        stream().map(Identifier::new).map(registry::get).filter(Objects::nonNull).forEach(objects::add);
+        stream().map(Identifier::of).map(registry::get).filter(Objects::nonNull).forEach(objects::add);
         removeUpdated();
         synced = true;
         return this;

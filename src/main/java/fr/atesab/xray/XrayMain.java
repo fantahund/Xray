@@ -51,6 +51,7 @@ import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collector;
@@ -60,10 +61,10 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
     public static final String MOD_ID = "atianxray";
     public static final String MOD_NAME = "Xray";
     public static final String[] MOD_AUTHORS = {"ATE47", "ThaEin", "ALFECLARE"};
-    public static final URL MOD_SOURCE = XrayUtils.soWhat(() -> new URL("https://github.com/ate47/Xray"));
-    public static final URL MOD_ISSUE = XrayUtils.soWhat(() -> new URL("https://github.com/ate47/Xray/issues"));
-    public static final URL MOD_LINK = XrayUtils
-            .soWhat(() -> new URL("https://www.curseforge.com/minecraft/mc-mods/xray-1-13-rift-modloader"));
+    public static final URI MOD_SOURCE = XrayUtils.soWhat(() -> new URI("https://github.com/ate47/Xray"));
+    public static final URI MOD_ISSUE = XrayUtils.soWhat(() -> new URI("https://github.com/ate47/Xray/issues"));
+    public static final URI MOD_LINK = XrayUtils
+            .soWhat(() -> new URI("https://www.curseforge.com/minecraft/mc-mods/xray-1-13-rift-modloader"));
     private static final int maxFullbrightStates = 20;
     private static final Logger log = LogManager.getLogger(MOD_ID);
 
@@ -274,7 +275,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
     }
 
     @Override
-    public void onHudRender(DrawContext context, float tickDelta) {
+    public void onHudRender(DrawContext context, RenderTickCounter tickCounter) {
         MinecraftClient mc = MinecraftClient.getInstance();
         TextRenderer render = mc.textRenderer;
         ClientPlayerEntity player = mc.player;
@@ -335,7 +336,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
         ClientWorld level = minecraft.world;
         ClientPlayerEntity player = minecraft.player;
         MatrixStack stack = context.matrixStack();
-        float delta = context.tickDelta();
+        float delta = minecraft.getRenderTickCounter().getTickDelta(false);
         Camera mainCamera = minecraft.gameRenderer.getCamera();
         Vec3d camera = mainCamera.getPos();
 
@@ -364,8 +365,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 		RenderSystem.depthFunc(GL11.GL_NEVER);
 
 		Tessellator tessellator = Tessellator.getInstance();
-		BufferBuilder buffer = tessellator.getBuffer();
-		buffer.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
+		BufferBuilder buffer = tessellator.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
 
 		stack.push();
 
@@ -477,7 +477,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
                 }
             });
         });
-        tessellator.draw();
+        BufferRenderer.drawWithGlobalProgram(buffer.end());
         stack.pop();
         RenderSystem.disableBlend();
         RenderSystem.applyModelViewMatrix();

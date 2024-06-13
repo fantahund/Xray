@@ -10,7 +10,6 @@ import fr.atesab.xray.widget.XrayButton;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.MutableText;
@@ -18,7 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 
-import java.net.URL;
+import java.net.URI;
 
 public class XrayConfigMenu extends XrayScreen {
 
@@ -108,7 +107,7 @@ public class XrayConfigMenu extends XrayScreen {
         super.init();
     }
 
-    private void openLink(URL url) {
+    private void openLink(URI url) {
         try {
             Util.getOperatingSystem().open(url);
         } catch (Exception ignore) {
