@@ -477,7 +477,12 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
                 }
             });
         });
-        BufferRenderer.drawWithGlobalProgram(buffer.end());
+
+        BuiltBuffer builtBuffer = buffer.endNullable();
+        if (builtBuffer != null) {
+            BufferRenderer.drawWithGlobalProgram(builtBuffer);
+        }
+
         stack.pop();
         RenderSystem.disableBlend();
         RenderSystem.applyModelViewMatrix();
