@@ -48,7 +48,28 @@ public record EntityTypeIcon(EntityType<?> entity, ItemStack icon) {
     public static final EntityTypeIcon FALLING_BLOCK = register(EntityType.FALLING_BLOCK, Blocks.SAND);
     public static final EntityTypeIcon FIREBALL = register(EntityType.FIREBALL, Items.FIRE_CHARGE);
     public static final EntityTypeIcon FIREWORK_ROCKET = register(EntityType.FIREWORK_ROCKET, Items.FIREWORK_ROCKET);
-    public static final EntityTypeIcon BOAT = register(EntityType.BOAT, Items.OAK_BOAT);
+    public static final EntityTypeIcon OAK_BOAT = register(EntityType.OAK_BOAT, Items.OAK_BOAT);
+    public static final EntityTypeIcon DARK_OAK_BOAT = register(EntityType.DARK_OAK_BOAT, Items.DARK_OAK_BOAT);
+    public static final EntityTypeIcon SPRUCE_BOAT = register(EntityType.SPRUCE_BOAT, Items.SPRUCE_BOAT);
+    public static final EntityTypeIcon ACACIA_BOAT = register(EntityType.ACACIA_BOAT, Items.ACACIA_BOAT);
+    public static final EntityTypeIcon BIRCH_BOAT = register(EntityType.BIRCH_BOAT, Items.BIRCH_BOAT);
+    public static final EntityTypeIcon CHERRY_BOAT = register(EntityType.CHERRY_BOAT, Items.CHERRY_BOAT);
+    public static final EntityTypeIcon JUNGLE_BOAT = register(EntityType.JUNGLE_BOAT, Items.JUNGLE_BOAT);
+    public static final EntityTypeIcon MANGROVE_BOAT = register(EntityType.MANGROVE_BOAT, Items.MANGROVE_BOAT);
+    public static final EntityTypeIcon PALE_OAK_BOAT = register(EntityType.PALE_OAK_BOAT, Items.PALE_OAK_BOAT);
+    public static final EntityTypeIcon BAMBOO_RAFT = register(EntityType.BAMBOO_RAFT, Items.BAMBOO_RAFT);
+
+    public static final EntityTypeIcon OAK_CHEST_BOAT = register(EntityType.OAK_CHEST_BOAT, Items.OAK_CHEST_BOAT);
+    public static final EntityTypeIcon DARK_OAK_CHEST_BOAT = register(EntityType.DARK_OAK_CHEST_BOAT, Items.DARK_OAK_CHEST_BOAT);
+    public static final EntityTypeIcon SPRUCE_CHEST_BOAT = register(EntityType.SPRUCE_CHEST_BOAT, Items.SPRUCE_CHEST_BOAT);
+    public static final EntityTypeIcon ACACIA_CHEST_BOAT = register(EntityType.ACACIA_CHEST_BOAT, Items.ACACIA_CHEST_BOAT);
+    public static final EntityTypeIcon BIRCH_CHEST_BOAT = register(EntityType.BIRCH_CHEST_BOAT, Items.BIRCH_CHEST_BOAT);
+    public static final EntityTypeIcon CHERRY_CHEST_BOAT = register(EntityType.CHERRY_CHEST_BOAT, Items.CHERRY_CHEST_BOAT);
+    public static final EntityTypeIcon JUNGLE_CHEST_BOAT = register(EntityType.JUNGLE_CHEST_BOAT, Items.JUNGLE_CHEST_BOAT);
+    public static final EntityTypeIcon MANGROVE_CHEST_BOAT = register(EntityType.MANGROVE_CHEST_BOAT, Items.MANGROVE_CHEST_BOAT);
+    public static final EntityTypeIcon PALE_OAK_CHEST_BOAT = register(EntityType.PALE_OAK_CHEST_BOAT, Items.PALE_OAK_CHEST_BOAT);
+    public static final EntityTypeIcon BAMBOO_CHEST_RAFT = register(EntityType.BAMBOO_CHEST_RAFT, Items.BAMBOO_CHEST_RAFT);
+
     public static final EntityTypeIcon SPIDER = register(EntityType.SPIDER, Items.SPIDER_EYE);
     public static final EntityTypeIcon POTION = register(EntityType.POTION, Items.POTION);
     public static final EntityTypeIcon PUFFERFISH = register(EntityType.PUFFERFISH, Items.PUFFERFISH);

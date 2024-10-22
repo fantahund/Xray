@@ -26,6 +26,9 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gl.ShaderProgram;
+import net.minecraft.client.gl.ShaderProgramKey;
+import net.minecraft.client.gl.ShaderProgramKeys;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
@@ -344,7 +347,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
             return;
         }
 
-        RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+        RenderSystem.setShader(ShaderProgramKeys.POSITION_COLOR);
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         // RenderSystem.depthMask(false);
         RenderSystem.enableBlend();
@@ -353,7 +356,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 			return;
 		}
 
-		RenderSystem.setShader(GameRenderer::getPositionColorProgram);
+		RenderSystem.setShader(ShaderProgramKeys.POSITION_COLOR);
 		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 		// RenderSystem.depthMask(false);
 		RenderSystem.disableDepthTest();
@@ -368,8 +371,6 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 		BufferBuilder buffer = tessellator.begin(VertexFormat.DrawMode.DEBUG_LINES, VertexFormats.POSITION_COLOR);
 
 		stack.push();
-
-		RenderSystem.applyModelViewMatrix();
 		stack.translate(-camera.x, -camera.y, -camera.z);
 		Vector3f look = mainCamera.getHorizontalPlane();
 		float px = (float) (player.prevX + (player.getX() - player.prevX) * delta) + look.x();
@@ -423,7 +424,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 										blockPos.getX() + 1, blockPos.getY() + 1, blockPos.getZ() + 1
 								);
 
-								WorldRenderer.drawBox(stack, buffer, aabb, r, g, b, a);
+                                VertexRendering.drawBox(stack, buffer, aabb, r, g, b, a);
 
 								if (esp.hasTracer()) {
 									Vec3d center = aabb.getCenter();
@@ -468,7 +469,7 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 
                 Box aabb = e.getBoundingBox();
 
-                WorldRenderer.drawBox(stack, buffer, aabb, r, g, b, a);
+                VertexRendering.drawBox(stack, buffer, aabb, r, g, b, a);
 
                 if (esp.hasTracer()) {
                     Vec3d center = aabb.getCenter();
@@ -485,7 +486,6 @@ public class XrayMain implements ClientModInitializer, HudRenderCallback, EndTic
 
         stack.pop();
         RenderSystem.disableBlend();
-        RenderSystem.applyModelViewMatrix();
         RenderSystem.setShaderColor(1, 1, 1, 1);
 		RenderSystem.enableDepthTest();
 		RenderSystem.depthMask(true);

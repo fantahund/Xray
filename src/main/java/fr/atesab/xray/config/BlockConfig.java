@@ -25,6 +25,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 
 public class BlockConfig extends AbstractModeConfig implements SideRenderer, Cloneable {
+
     public enum Template implements EnumElement {
         // @formatter:off
         BLANK("x13.mod.template.blank", new ItemStack(Items.PAPER), new BlockConfig()),
@@ -206,16 +207,13 @@ public class BlockConfig extends AbstractModeConfig implements SideRenderer, Clo
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public void shouldSideBeRendered(BlockState adjacentState, BlockView blockState, BlockPos blockAccess,
-            Direction pos, CallbackInfoReturnable<Boolean> ci) {
+    public void shouldSideBeRendered(BlockState adjacentState, BlockView blockState, BlockPos blockAccess, Direction pos, CallbackInfoReturnable<Boolean> ci) {
         if (!isEnabled())
             return;
 
         String name = Registries.BLOCK.getId(adjacentState.getBlock()).toString();
         boolean present = blocks.contains(name);
-        boolean shouldRender = viewMode.getViewer().shouldRenderSide(present, adjacentState, blockState,
-                blockAccess, pos);
+        boolean shouldRender = viewMode.getViewer().shouldRenderSide(present, adjacentState, blockState, blockAccess, pos);
         ci.setReturnValue(shouldRender);
     }
 

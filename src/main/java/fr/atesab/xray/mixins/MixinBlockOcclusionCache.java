@@ -15,8 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(targets = "net.caffeinemc.mods.sodium.client.render.chunk.compile.pipeline.BlockOcclusionCache")
 public class MixinBlockOcclusionCache {
     @Inject(at = @At("HEAD"), method = "shouldDrawSide", cancellable = true, remap = false)
-    private void shouldDrawSide(BlockState state, BlockView reader, BlockPos pos, Direction face,
-            CallbackInfoReturnable<Boolean> ci) {
+    private void shouldDrawSide(BlockState state, BlockView reader, BlockPos pos, Direction face, CallbackInfoReturnable<Boolean> ci) {
         XrayMain.getMod().shouldSideBeRendered(state, reader, pos, face, ci);
     }
 }
