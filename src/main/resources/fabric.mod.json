@@ -23,7 +23,8 @@
   "depends": {
     "fabricloader": ">=0.15.11",
     "fabric": "*",
-    "minecraft": "*"
+    "minecraft": "*",
+    "sodium": "*"
   },
   "conflicts": {
     "optifabric": "*"

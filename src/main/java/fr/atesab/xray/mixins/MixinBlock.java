@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Block.class)
 public abstract class MixinBlock {
-	@Shadow protected abstract Block asBlock();
+	/*@Shadow protected abstract Block asBlock();
 
 	@Inject(at = @At("RETURN"), method = "shouldDrawSide", cancellable = true)
 	private static void shouldDrawSide(BlockState state, BlockState otherState, Direction side, CallbackInfoReturnable<Boolean> cir) {
@@ -23,5 +23,5 @@ public abstract class MixinBlock {
 	}
 
 	private MixinBlock() {
-	}
+	}*/
 }
