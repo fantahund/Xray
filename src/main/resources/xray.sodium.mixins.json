@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.atesab.xray.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": [
+    "MixinBlockOcclusionCache",
+    "MixinMinecraftClient",
+    "MixinInputUtil",
+    "MixinLightmapTextureManager"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
